@@ -1,0 +1,91 @@
+{
+  "name": "Las Po - Notificación Nuevo Pedido",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "nuevo-pedido",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "webhook-node-1",
+      "name": "Webhook Supabase Nuevo Pedido",
+      "webhookId": "nuevo-pedido"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "param-1",
+              "name": "id_pedido",
+              "value": "={{ $json.body.id_pedido }}",
+              "type": "string"
+            },
+            {
+              "id": "param-2",
+              "name": "cantidad_planchas",
+              "value": "={{ $json.body.cantidad_planchas }}",
+              "type": "number"
+            },
+            {
+              "id": "param-3",
+              "name": "tipo_frecuencia",
+              "value": "={{ $json.body.tipo_frecuencia }}",
+              "type": "string"
+            },
+            {
+              "id": "param-4",
+              "name": "telefono",
+              "value": "={{ $json.body.telefono }}",
+              "type": "string"
+            },
+            {
+              "id": "param-5",
+              "name": "direccion_entrega",
+              "value": "={{ $json.body.direccion_entrega }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        0
+      ],
+      "id": "set-node-1",
+      "name": "Procesar Datos del Pedido"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook Supabase Nuevo Pedido": {
+      "main": [
+        [
+          {
+            "node": "Procesar Datos del Pedido",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "tags": []
+}
